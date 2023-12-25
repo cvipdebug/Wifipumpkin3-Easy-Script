@@ -30,6 +30,14 @@ def Main():
                 'microsoft'
             ]
         },
+        'phishkin3': {
+            'message': 'Phishkin3 proxy configuration',
+            'prefix': 'phishkin3.',
+            'options': [
+                'cloud_url_phishing',
+                'redirect_url_after_login'
+            ]
+        },
         'pumpkinproxy': {
             'message': 'PumpkinProxy 3 plugins',
             'prefix': 'pumpkinproxy.',
@@ -46,12 +54,18 @@ def Main():
     if proxies in proxy_commands:
         proxy_data = proxy_commands[proxies]
         print(f"\n{proxy_data['message']}")
-        print("Options:")
-        for option in proxy_data['options']:
-            print(f" - {option}")
-        plugin = input(f"What {proxies} plugin do you want to use > ")
-        print("\nLaunching program\n")
-        system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}{plugin}; start"')
+        if proxies == 'phishkin3':
+            phishing_url = input("Enter the phishing URL > ")
+            redirect_url = input("Enter the redirect URL after login > ")
+            print("\nLaunching program\n")
+            system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}cloud_url_phishing {phishing_url}; set {proxy_data["prefix"]}redirect_url_after_login {redirect_url}; start"')
+        else:
+            print("Options:")
+            for option in proxy_data['options']:
+                print(f" - {option}")
+            plugin = input(f"What {proxies} plugin do you want to use > ")
+            print("\nLaunching program\n")
+            system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}{plugin}; start"')
     else:
         print("\nLaunching program\n")
         system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; start"')
