@@ -1,19 +1,32 @@
 from os import system
 
+# ANSI escape codes for text colors
+class Color:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def print_color(text, color):
+    print(color + text + Color.ENDC)
+
 def Main():
-    print("wifipumpkin3 easy script by cvip\n")
+    print_color("wifipumpkin3 easy script by cvip", Color.HEADER + Color.BOLD)
     ssid = input("What do you want the ssid name to be 'The name of the wifi' > ")
     system("iwconfig")
     interface = input("\nWhat wifi interface will host the RAP > ")
-    print("""\n
+    print_color("""\n
     Proxies
-    =======
-    captiveflask (Allow block Internet access for users until they open the page login page.)
-    phishkin3 (Proxy for create captive portal with external phishing page)
-    evilqr3 (Proxy for create captive portal QR phishing WhatsApp,Discord, etc... )
-    pumpkinproxy (Transparent proxies that you can use to intercept and manipulate HTTP traffic modifying requests and responses, that allow to inject javascripts into the targets visited.)
-    noproxy (Runnning without proxy redirect traffic)\n
-    """)
+    =======""", Color.OKBLUE + Color.BOLD)
+    print_color("captiveflask (Allow block Internet access for users until they open the page login page.)", Color.OKGREEN + Color.BOLD)
+    print_color("phishkin3 (Proxy for create captive portal with external phishing page)", Color.OKGREEN + Color.BOLD)
+    print_color("evilqr3 (Proxy for create captive portal QR phishing WhatsApp, Discord, etc... )", Color.OKGREEN + Color.BOLD)
+    print_color("pumpkinproxy (Transparent proxies that you can use to intercept and manipulate HTTP traffic modifying requests and responses, that allow to inject javascripts into the targets visited.)", Color.OKGREEN + Color.BOLD)
+    print_color("noproxy (Running without proxy redirect traffic)\n", Color.OKGREEN + Color.BOLD)
     proxies = input("What proxy do you want to use > ")
 
     proxy_commands = {
@@ -53,21 +66,21 @@ def Main():
 
     if proxies in proxy_commands:
         proxy_data = proxy_commands[proxies]
-        print(f"\n{proxy_data['message']}")
+        print_color(f"\n{proxy_data['message']}", Color.OKGREEN + Color.BOLD)
         if proxies == 'phishkin3':
             phishing_url = input("Enter the phishing URL > ")
             redirect_url = input("Enter the redirect URL after login > ")
-            print("\nLaunching program\n")
+            print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
             system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}cloud_url_phishing {phishing_url}; set {proxy_data["prefix"]}redirect_url_after_login {redirect_url}; start"')
         else:
-            print("Options:")
+            print_color("Options:", Color.OKBLUE + Color.BOLD)
             for option in proxy_data['options']:
-                print(f" - {option}")
+                print_color(f" - {option}", Color.OKGREEN + Color.BOLD)
             plugin = input(f"What {proxies} plugin do you want to use > ")
-            print("\nLaunching program\n")
+            print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
             system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}{plugin}; start"')
     else:
-        print("\nLaunching program\n")
+        print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
         system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; start"')
 
 if __name__ == "__main__":
