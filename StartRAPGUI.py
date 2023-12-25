@@ -8,11 +8,11 @@ def Main():
     print("""\n
     Proxies
     =======
-    captiveflask (Allow block Internet access for users until they log in to a fake page)
-    phishkin3 (Proxy for creating a captive portal)
-    evilqr3 (Proxy for creating a captive portal)
-    pumpkinproxy (Transparent proxies that you can use to intercept)
-    noproxy (Running without proxy redirect traffic)\n
+    captiveflask (Allow block Internet access for users until they open the page login page.)
+    phishkin3 (Proxy for create captive portal with external phishing page)
+    evilqr3 (Proxy for create captive portal QR phishing WhatsApp,Discord, etc... )
+    pumpkinproxy (Transparent proxies that you can use to intercept and manipulate HTTP traffic modifying requests and responses, that allow to inject javascripts into the targets visited.)
+    noproxy (Runnning without proxy redirect traffic)\n
     """)
     proxies = input("What proxy do you want to use > ")
 
