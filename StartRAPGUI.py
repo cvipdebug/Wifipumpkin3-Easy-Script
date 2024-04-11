@@ -91,9 +91,12 @@ def Main():
                 plugin = input(f"What {proxies} plugin do you want to use > ")
                 print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
                 system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}{plugin}; start"')
-            else:
+            elif proxies == 'noproxy':
                 print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
                 system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; start"')
+        else:
+            print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
+            system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; start"')
 
     except KeyboardInterrupt:
         print_color("\nClosing script", Color.FAIL + Color.BOLD)
