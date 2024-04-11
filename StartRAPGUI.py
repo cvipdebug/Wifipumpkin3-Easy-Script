@@ -19,7 +19,7 @@ def Main():
         print_color("wifipumpkin3 easy script by cvip", Color.HEADER + Color.BOLD)
         ssid = input("What do you want the ssid name to be 'The name of the wifi' > ")
         print("")
-        system("iwconfig")
+        system("sudo iwconfig")
         interface = input("\nWhat wifi interface will host the RAP > ")
         print_color("""\n
         Proxies
