@@ -41,8 +41,10 @@ def Main():
                     'Login_v4',
                     'example',
                     'facebook',
+                    'google',
                     'loginPage',
-                    'microsoft'
+                    'microsoft',
+                    'sophos'
                 ]
             },
             'phishkin3': {
